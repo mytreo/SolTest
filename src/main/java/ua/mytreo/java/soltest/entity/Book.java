@@ -1,20 +1,29 @@
 package ua.mytreo.java.soltest.entity;
 
+import ua.mytreo.java.soltest.parser.ParserDateFormatter;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author mytreo   27.01.2016.
- * @version 1.0
+ * @version 1.1
  */
 
 public class Book {
-    private int id;
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    private String id;
     private String author;
     private String title;
     private String genre;
     private float price;
-    private String publishDate;
+    private Date publishDate;
     private String description;
 
-    public Book(int id, String author, String title, String genre, float price, String publishDate, String description) {
+    public Book(String id, String author, String title, String genre, float price, Date publishDate, String description){
         this.id = id;
         this.author = author;
         this.title = title;
@@ -24,14 +33,16 @@ public class Book {
         this.description = description;
     }
 
-    public int getId() {
+    @XmlAttribute(name = "id")
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
+    @XmlElement(name = "author")
     public String getAuthor() {
         return author;
     }
@@ -40,6 +51,7 @@ public class Book {
         this.author = author;
     }
 
+    @XmlElement(name = "title")
     public String getTitle() {
         return title;
     }
@@ -48,6 +60,7 @@ public class Book {
         this.title = title;
     }
 
+    @XmlElement(name = "genre")
     public String getGenre() {
         return genre;
     }
@@ -56,6 +69,7 @@ public class Book {
         this.genre = genre;
     }
 
+    @XmlElement(name = "price")
     public float getPrice() {
         return price;
     }
@@ -64,14 +78,17 @@ public class Book {
         this.price = price;
     }
 
-    public String getPublishDate() {
+    @XmlElement(name = "publish_date")
+    @XmlJavaTypeAdapter(ParserDateFormatter.class)
+    public Date getPublishDate() {
         return publishDate;
     }
 
-    public void setPublishDate(String publishDate) {
+    public void setPublishDate(Date publishDate){
         this.publishDate = publishDate;
     }
 
+    @XmlElement(name = "description")
     public String getDescription() {
         return description;
     }
