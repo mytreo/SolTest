@@ -19,11 +19,11 @@ import java.nio.charset.StandardCharsets;
  */
 
 
-//TO DO дописать чтобы тесты что то таки проверяли
+//TODO дописать чтобы тесты что то таки проверяли
 public class ParserJaxbImpl implements Parser {
 
 
-    //TO DO unMarshall not working
+    //TODO unMarshall not working
     @Override
     public Object unMarshall(String inputXml, Class c) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(c);
@@ -36,7 +36,7 @@ public class ParserJaxbImpl implements Parser {
     }
 
 
-   //TO DO remove <books>
+   //TODO remove <books>
     @Override
     public String marshall(Object o) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(o.getClass());
