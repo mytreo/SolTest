@@ -1,12 +1,13 @@
 package ua.mytreo.java.soltest.parser.impl;
 
 
+import org.xml.sax.SAXException;
 import ua.mytreo.java.soltest.parser.Parser;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import javax.xml.XMLConstants;
+import javax.xml.bind.*;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -14,20 +15,25 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * JAXB parser для маршкаллинга-анмаршаллинга Catalog+Book
+ *
  * @author mytreo   27.01.2016.
- * @version 1.0
+ * @version 1.1
  */
 
-
-//TODO дописать чтобы тесты что то таки проверяли
 public class ParserJaxbImpl implements Parser {
+    private Schema schema = null;
 
+    public ParserJaxbImpl() throws SAXException {
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        schema = schemaFactory.newSchema(ParserJaxbImpl.class.getResource("/reqSchema.xsd"));
+    }
 
-    //TODO unMarshall not working
     @Override
     public Object unMarshall(String inputXml, Class c) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(c);
         Unmarshaller unmarshaller = context.createUnmarshaller();
+        unmarshaller.setSchema(schema);
+        unmarshaller.setEventHandler(event -> false);
 
         //unMarshall object from xml string
         InputStream reqXmlStream = new ByteArrayInputStream(inputXml.getBytes(StandardCharsets.UTF_8));
@@ -36,7 +42,6 @@ public class ParserJaxbImpl implements Parser {
     }
 
 
-   //TODO remove <books>
     @Override
     public String marshall(Object o) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(o.getClass());

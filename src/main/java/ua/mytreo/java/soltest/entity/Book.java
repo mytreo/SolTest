@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * @author mytreo   27.01.2016.
- * @version 1.1
+ * @version 1.2
  */
 
 public class Book {
@@ -22,6 +22,9 @@ public class Book {
     private float price;
     private Date publishDate;
     private String description;
+
+    public Book(){
+    }
 
     public Book(String id, String author, String title, String genre, float price, Date publishDate, String description){
         this.id = id;

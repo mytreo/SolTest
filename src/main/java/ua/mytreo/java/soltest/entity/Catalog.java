@@ -1,25 +1,23 @@
 package ua.mytreo.java.soltest.entity;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author mytreo   27.01.2016.
- * @version 1.1
+ * @version 1.2
  */
 
 @XmlRootElement(name = "catalog")
 @XmlType(propOrder = {"books"})
+@XmlSeeAlso(Book.class)
 public class Catalog {
 
     private List<Book> books=new ArrayList<>();
 
+
     @XmlElement(name = "book")
-    @XmlElementWrapper
     public List<Book> getBooks() {
         return books;
     }
