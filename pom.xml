@@ -14,6 +14,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <junit.version>4.11</junit.version>
         <jetty.version>9.3.0.M0</jetty.version>
+        <org.mockito.version>1.8.4</org.mockito.version>
     </properties>
 
     <dependencies>
@@ -36,6 +37,11 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${org.mockito.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

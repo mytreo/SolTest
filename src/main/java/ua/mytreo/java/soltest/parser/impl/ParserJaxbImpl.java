@@ -14,8 +14,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 /**
- * JAXB parser для маршкаллинга-анмаршаллинга Catalog+Book
- *
+ * Реализованный JAXB parser для маршкаллинга-анмаршаллинга Catalog+Book
  * @author mytreo   27.01.2016.
  * @version 1.1
  */
@@ -46,8 +45,9 @@ public class ParserJaxbImpl implements Parser {
     public String marshall(Object o) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(o.getClass());
         Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,
-                Boolean.TRUE);
+        marshaller.setSchema(schema);
+        marshaller.setEventHandler(event -> false);
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
         //write XML to an array of bytes
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

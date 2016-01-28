@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * Класс необходимый для того что бы при маршаллинге и анмаршаллинге корректно воспринималась дата
  * @author mytreo   27.01.2016.
  * @version 1.0
  */

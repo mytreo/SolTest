@@ -4,6 +4,7 @@ import ua.mytreo.java.soltest.parser.ParserDateFormatter;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
  * @author mytreo   27.01.2016.
  * @version 1.2
  */
-
+@XmlType(propOrder = {"id","author","title","genre","price","publishDate","description"})
 public class Book {
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     private String id;
@@ -34,6 +35,10 @@ public class Book {
         this.price = price;
         this.publishDate = publishDate;
         this.description = description;
+    }
+
+    public boolean isBookForDel(){
+        return  (this.getTitle().isEmpty() && this.getGenre().isEmpty() && this.getAuthor().isEmpty());
     }
 
     @XmlAttribute(name = "id")
@@ -111,5 +116,37 @@ public class Book {
                 ", publishDate='" + publishDate + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (Float.compare(book.getPrice(), getPrice()) != 0) return false;
+        if (format != null ? !format.equals(book.format) : book.format != null) return false;
+        if (!getId().equals(book.getId())) return false;
+        if (getAuthor() != null ? !getAuthor().equals(book.getAuthor()) : book.getAuthor() != null) return false;
+        if (getTitle() != null ? !getTitle().equals(book.getTitle()) : book.getTitle() != null) return false;
+        if (getGenre() != null ? !getGenre().equals(book.getGenre()) : book.getGenre() != null) return false;
+        if (getPublishDate() != null ? !getPublishDate().equals(book.getPublishDate()) : book.getPublishDate() != null)
+            return false;
+        return getDescription() != null ? getDescription().equals(book.getDescription()) : book.getDescription() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = format != null ? format.hashCode() : 0;
+        result = 31 * result + getId().hashCode();
+        result = 31 * result + (getAuthor() != null ? getAuthor().hashCode() : 0);
+        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
+        result = 31 * result + (getGenre() != null ? getGenre().hashCode() : 0);
+        result = 31 * result + (getPrice() != +0.0f ? Float.floatToIntBits(getPrice()) : 0);
+        result = 31 * result + (getPublishDate() != null ? getPublishDate().hashCode() : 0);
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        return result;
     }
 }
