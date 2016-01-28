@@ -11,15 +11,12 @@ import java.util.Date;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertSame;
-import static junit.framework.TestCase.*;
 
 /**
  * @author mytreo   27.01.2016.
  * @version 1.0
  */
 
-//TODO дописать чтобы тесты что то таки проверяли
 public class ParserJaxbImplTest {
     private Parser parser;
     private Date date;

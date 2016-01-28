@@ -1,9 +1,8 @@
-package ua.mytreo.java.soltest.servlets;
-
 import org.junit.Before;
-import org.junit.BeforeClass;
+
 import org.junit.Test;
 import ua.mytreo.java.soltest.entity.Book;
+import ua.mytreo.java.soltest.servlets.ChangeBookServlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +21,7 @@ import static org.mockito.Mockito.when;
  * @author mytreo   28.01.2016.
  * @version 1.0
  */
-public class ChangeBookServletTest {
+public class ChangeBookServletIT {
     private List<Book> mainBookList = new ArrayList<>();
     private String testXmlIns = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
             "<catalog>\n" +
