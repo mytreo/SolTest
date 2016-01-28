@@ -99,7 +99,7 @@ public class ChangeBookServlet extends HttpServlet {
                 bookMainXml.setPublishDate(bookReq.getPublishDate());
             }
         }
-        if (!haveSame || mainBookList.isEmpty()) {
+        if (!haveSame) {
             mainBookList.add(bookReq);
         }
         catMain.setBooks(mainBookList);
