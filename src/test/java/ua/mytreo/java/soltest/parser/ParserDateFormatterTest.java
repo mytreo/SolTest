@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  * @version 1.0
  */
 public class ParserDateFormatterTest {
-    ParserDateFormatter parserDateFormatter;
+    private ParserDateFormatter parserDateFormatter;
 
 
     @Before

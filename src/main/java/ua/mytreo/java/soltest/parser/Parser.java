@@ -1,7 +1,5 @@
 package ua.mytreo.java.soltest.parser;
 
-import ua.mytreo.java.soltest.entity.Catalog;
-
 import javax.xml.bind.JAXBException;
 
 /**

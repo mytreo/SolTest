@@ -19,7 +19,7 @@ import static junit.framework.Assert.assertEquals;
 
 public class ParserJaxbImplTest {
     private Parser parser;
-    private Date date;
+
     @Before
     public void setUp() throws Exception {
         parser = new ParserJaxbImpl();
@@ -45,10 +45,10 @@ public class ParserJaxbImplTest {
         cal.set(Calendar.MINUTE, 0);
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
-        date = cal.getTime();
+        Date date = cal.getTime();
 
         //date=new Date(2000,10,01);
-        Book book1 = new Book("bk101","Gambardella, Matthew","XML Developer's Guide","Computer",44.95f,date,"An in-depth look at creating applications\nwith XML.");
+        Book book1 = new Book("bk101","Gambardella, Matthew","XML Developer's Guide","Computer",44.95f, date,"An in-depth look at creating applications\nwith XML.");
         Catalog catalog =  (Catalog) parser.unMarshall(testXml, Catalog.class);
         assertEquals("Not correct book unmarshall",book1,catalog.getBooks().get(0));
       //  System.out.println(catalog.getBooks().toString());

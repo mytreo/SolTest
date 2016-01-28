@@ -10,7 +10,7 @@ import java.util.Date;
  * @version 1.0
  */
 public class ParserDateFormatter extends XmlAdapter<String, Date> {
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     public Date unmarshal(String date) throws Exception {
         return formatter.parse(date);

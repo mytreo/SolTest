@@ -56,7 +56,7 @@ public class ChangeBookServletIT {
             "        <description>An</description>\n" +
             "    </book>\n" +
             "</catalog>";
-    Date date_;
+    private Date date_;
     @Before
     public void setUp() throws Exception {
         Calendar cal = Calendar.getInstance();

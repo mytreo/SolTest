@@ -5,8 +5,6 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import ua.mytreo.java.soltest.entity.Book;
 import ua.mytreo.java.soltest.servlets.ChangeBookServlet;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -19,6 +17,7 @@ public class Main {
 
 
         List<Book> mainBookList= new CopyOnWriteArrayList<>();//ArrayList<>();
+       // mainBookList.addAll();
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.addServlet(new ServletHolder(new ChangeBookServlet(mainBookList)), ChangeBookServlet.PAGE_URL);
