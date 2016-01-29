@@ -7,9 +7,9 @@ import ua.mytreo.java.soltest.parser.Parser;
 import ua.mytreo.java.soltest.parser.impl.ParserJaxbImpl;
 
 import javax.xml.bind.JAXBException;
-import java.io.BufferedWriter;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -64,10 +64,21 @@ public class Saver implements Runnable {
            throw new Exception("Can't parse!");
         }
 
-         //WritingFile
-        Writer out= new BufferedWriter(new OutputStreamWriter(System.out));
+         //Writing To Console
+       /* Writer out= new BufferedWriter(new OutputStreamWriter(System.out));
         out.write(toWriteString);
-        out.flush();
+        out.flush();*/
+
+        //Writing File
+        System.out.println("write");
+        try(FileWriter writer = new FileWriter(filepath, false))
+        {
+            writer.write(toWriteString);
+            writer.flush();
+        }
+        catch(IOException ex){
+            throw new Exception("Can't write! "+ex.getMessage());
+        }
 
     }
 }

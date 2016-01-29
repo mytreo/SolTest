@@ -21,23 +21,21 @@ import java.util.List;
  */
 public class Loader {
 
-    public List<Book> getBooksFromFile(String resource){
+    public List<Book> getBooksFromFile(String mainXmlPath){
 
         StringBuilder sb = new StringBuilder();
         Parser parser;
         Catalog cat;
         String mainXml;
-        try(InputStreamReader isr= new InputStreamReader(Loader.class.getResourceAsStream(resource), Charset.forName("UTF-8"))) {
-            int read = isr.read();
-            while (read >= 0) {
-                sb.append((char) read);
-                read = isr.read();
+        try (FileReader reader = new FileReader(mainXmlPath)) {
+            int c;
+            while ((c = reader.read()) != -1) {
+                sb.append((char) c);
             }
-        } catch (IOException e) {
+        } catch (IOException ex) {
             return new ArrayList<>();
         }
-
-        mainXml = sb.toString();
+         mainXml = sb.toString();
         try {
             parser = new ParserJaxbImpl();
             cat = (Catalog) parser.unMarshall(mainXml, Class.forName("ua.mytreo.java.soltest.entity.Catalog"));
