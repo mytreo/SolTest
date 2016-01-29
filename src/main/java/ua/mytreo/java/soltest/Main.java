@@ -17,14 +17,18 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @version 1.1
  */
 public class Main {
+    public static final String MAIN_XML_PATH="/main.xml";
+    public static final int BETWEEN_SAVES_PAUSE=10000;
+
     public static void main(String[] args) throws Exception {
+
 
         List<Book> mainBookList= new CopyOnWriteArrayList<>();//ArrayList<>();
         Loader loader=new Loader();
-        mainBookList.addAll(loader.getBooksFromFile("/main.xml"));
+        mainBookList.addAll(loader.getBooksFromFile(MAIN_XML_PATH));
 
         AtomicInteger countInsUpdDel = new AtomicInteger(0);
-        Thread saverSrv= new Thread(new Saver(countInsUpdDel,10000));
+        Thread saverSrv= new Thread(new Saver(countInsUpdDel,mainBookList,MAIN_XML_PATH,BETWEEN_SAVES_PAUSE));
         saverSrv.start();
 
 
