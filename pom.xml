@@ -125,7 +125,7 @@
                    <appendAssemblyId>false</appendAssemblyId>
                    <archive>
                        <manifest>
-                           <mainClass>Main</mainClass>
+                           <mainClass>ua.mytreo.java.soltest.Main</mainClass>
                        </manifest>
                    </archive>
                </configuration>
