@@ -14,6 +14,7 @@ import javax.xml.bind.JAXBException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Сервлет,отвечающий за работу со списком книг
@@ -24,9 +25,11 @@ import java.util.List;
 public class ChangeBookServlet extends HttpServlet {
     public static final String PAGE_URL = "/changeBook";
     private List<Book> mainBookList;
+    AtomicInteger countInsUpdDel;
 
-    public ChangeBookServlet(List<Book> mainBookList) {
+    public ChangeBookServlet(List<Book> mainBookList, AtomicInteger countInsUpdDel) {
         this.mainBookList = mainBookList;
+        this.countInsUpdDel=countInsUpdDel;
     }
 
     public void doPost(HttpServletRequest request,
@@ -103,6 +106,7 @@ public class ChangeBookServlet extends HttpServlet {
             mainBookList.add(bookReq);
         }
         catMain.setBooks(mainBookList);
+        countInsUpdDel.incrementAndGet();
         return parser.marshall(catMain);
     }
 }

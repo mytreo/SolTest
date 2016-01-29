@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -23,6 +24,7 @@ import static org.mockito.Mockito.when;
  */
 public class ChangeBookServletIT {
     private List<Book> mainBookList = new ArrayList<>();
+    AtomicInteger ai = new AtomicInteger(0);
     private String testXmlIns = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
             "<catalog>\n" +
             "    <book id=\"bk101\">\n" +
@@ -128,7 +130,7 @@ public class ChangeBookServletIT {
         final StringWriter stringWriter = new StringWriter();
         HttpServletResponse response = getMockedResponse(stringWriter);
         HttpServletRequest request = getMockedBadRequest(ChangeBookServlet.PAGE_URL);
-        ChangeBookServlet changeBookSrv = new ChangeBookServlet(mainBookList);
+        ChangeBookServlet changeBookSrv = new ChangeBookServlet(mainBookList,ai);
 
         changeBookSrv.doPost(request, response);
         assertEquals("400 BAD_REQUEST", stringWriter.toString().trim());
@@ -139,7 +141,7 @@ public class ChangeBookServletIT {
         final StringWriter stringWriter = new StringWriter();
         HttpServletResponse response = getMockedResponse(stringWriter);
         HttpServletRequest request = getMockedInsRequest(ChangeBookServlet.PAGE_URL);
-        ChangeBookServlet changeBookSrv = new ChangeBookServlet(mainBookList);
+        ChangeBookServlet changeBookSrv = new ChangeBookServlet(mainBookList,ai);
 
         changeBookSrv.doPost(request, response);
         assertEquals(testXmlIns, stringWriter.toString().trim());
@@ -151,7 +153,7 @@ public class ChangeBookServletIT {
         final StringWriter stringWriter = new StringWriter();
         HttpServletResponse response = getMockedResponse(stringWriter);
         HttpServletRequest request = getMockedReadRequest(ChangeBookServlet.PAGE_URL);
-        ChangeBookServlet changeBookSrv = new ChangeBookServlet(mainBookList);
+        ChangeBookServlet changeBookSrv = new ChangeBookServlet(mainBookList,ai);
 
         changeBookSrv.doPost(request, response);
 
@@ -164,7 +166,7 @@ public class ChangeBookServletIT {
         final StringWriter stringWriter = new StringWriter();
         HttpServletResponse response = getMockedResponse(stringWriter);
         HttpServletRequest request = getMockedUpdRequest(ChangeBookServlet.PAGE_URL);
-        ChangeBookServlet changeBookSrv = new ChangeBookServlet(mainBookList);
+        ChangeBookServlet changeBookSrv = new ChangeBookServlet(mainBookList,ai);
 
         changeBookSrv.doPost(request, response);
 
@@ -177,7 +179,7 @@ public class ChangeBookServletIT {
         final StringWriter stringWriter = new StringWriter();
         HttpServletResponse response = getMockedResponse(stringWriter);
         HttpServletRequest request = getMockedDelRequest(ChangeBookServlet.PAGE_URL);
-        ChangeBookServlet changeBookSrv = new ChangeBookServlet(mainBookList);
+        ChangeBookServlet changeBookSrv = new ChangeBookServlet(mainBookList,ai);
 
         changeBookSrv.doPost(request, response);
 
