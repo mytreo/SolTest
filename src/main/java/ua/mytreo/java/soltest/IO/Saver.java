@@ -7,6 +7,9 @@ import ua.mytreo.java.soltest.parser.Parser;
 import ua.mytreo.java.soltest.parser.impl.ParserJaxbImpl;
 
 import javax.xml.bind.JAXBException;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -62,7 +65,9 @@ public class Saver implements Runnable {
         }
 
          //WritingFile
-
+        Writer out= new BufferedWriter(new OutputStreamWriter(System.out));
+        out.write(toWriteString);
+        out.flush();
 
     }
 }
